@@ -23,7 +23,7 @@ SOFTWARE.
 #ifndef DATA_
 #define DATA_
 
-//#include
+
 #include"../AUAC_TYPEDEFS/AUAC_TYPES.h"
 
 class DATA {
