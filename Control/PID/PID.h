@@ -1,4 +1,6 @@
-/*Copyright (c) 2020 AUAC-Technologies
+/*MIT License
+
+Copyright (c) 2020 Nyameaama Gambrah
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -18,31 +20,42 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-//Author - Nyameaama Gambrah
-#ifndef GNC_CLIENT_PORTAL_
-#define GNC_CLIENT_PORTAL_
 
-#include"../AUAC_TYPEDEFS/AUAC_TYPES.h"
-#include"../Data/SData.h"
+#ifndef PID
+#define PID
 
-class GNCClientPortal {
+#include<Arduino.h>
+#include"../../utility/definitions.h"
+//#include"ErrorDump.h"
+
+//Different instances of PID computation will be called from this class so each unique process will
+//need to have constants stored so individual processes can be continued after end of class call
+
+class PROPORTIONAL_INTEGRAL_DERIVATIVE {
+    private:
+        uint8_t dt;
+
+    private:
+        void updateConstants(String Process);
+
+        AUAC_BASE_DOUBLE getProportional();
+
+        AUAC_BASE_DOUBLE getIntegral();
+
+        AUAC_BASE_DOUBLE getDerivative();
+
+        boolean compare(String x, String y);
+
+        boolean checkforInstance(String tag);
+
     public:
-        //Data
-        AUAC_BASE_DOUBLE RETURN_IMU_ROLL;
-        AUAC_BASE_DOUBLE RETURN_IMUL_PITCH;
-        AUAC_BASE_DOUBLE RETURN_IMU_YAW;
+        //
+        AUAC_BASE_DOUBLE PID_MAIN(String Process,double rocketPos,double setpoint);
 
-    public:
-        //Constructor
-        GNCClientPortal();
-
-        //Data Section
-
-
-
-        //Controls Section
-        
+        void createPIDinstance(String tag,double kp,double ki,double kd);
 
 };
 
-#endif // GNC_CLIENT_PORTAL_
+
+
+#endif

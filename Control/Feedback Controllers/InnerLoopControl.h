@@ -1,4 +1,6 @@
-/*Copyright (c) 2020 AUAC-Technologies
+/*MIT License
+
+Copyright (c) 2020 Nyameaama Gambrah
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -18,31 +20,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-//Author - Nyameaama Gambrah
-#ifndef GNC_CLIENT_PORTAL_
-#define GNC_CLIENT_PORTAL_
 
-#include"../AUAC_TYPEDEFS/AUAC_TYPES.h"
-#include"../Data/SData.h"
+#ifndef ILC
+#define ILC
 
-class GNCClientPortal {
+#include"../Thrust/MotorMixing/MMA.h"
+#include"../PID/PID.h"
+#include"../../AUAC_TYPEDEFS/AUAC_TYPEDEFS.h"
+#include<stdint.h>
+#include<stddef.h>
+
+//PID controllers to change and maintain DOF
+
+class InnerLoopControl {
     public:
-        //Data
-        AUAC_BASE_DOUBLE RETURN_IMU_ROLL;
-        AUAC_BASE_DOUBLE RETURN_IMUL_PITCH;
-        AUAC_BASE_DOUBLE RETURN_IMU_YAW;
+        AUAC_BASE_DOUBLE ADJUST_ROLL(AUAC_BASE_AUAC_BASE_DOUBLE set,AUAC_BASE_AUAC_BASE_DOUBLE current);
 
-    public:
-        //Constructor
-        GNCClientPortal();
+        AUAC_BASE_DOUBLE ADJUST_PITCH(AUAC_BASE_DOUBLE set,AUAC_BASE_DOUBLE current);
+        
+        AUAC_BASE_DOUBLE ADJUST_YAW(AUAC_BASE_DOUBLE set,AUAC_BASE_DOUBLE current);
 
-        //Data Section
-
-
-
-        //Controls Section
         
 
 };
 
-#endif // GNC_CLIENT_PORTAL_
+#endif

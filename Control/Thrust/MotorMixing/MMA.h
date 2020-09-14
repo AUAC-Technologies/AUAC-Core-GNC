@@ -1,4 +1,6 @@
-/*Copyright (c) 2020 AUAC-Technologies
+/*MIT License
+
+Copyright (c) 2020 Nyameaama Gambrah
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -18,31 +20,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-//Author - Nyameaama Gambrah
-#ifndef GNC_CLIENT_PORTAL_
-#define GNC_CLIENT_PORTAL_
 
-#include"../AUAC_TYPEDEFS/AUAC_TYPES.h"
-#include"../Data/SData.h"
+#ifndef MMA
+#define MMA
 
-class GNCClientPortal {
-    public:
-        //Data
-        AUAC_BASE_DOUBLE RETURN_IMU_ROLL;
-        AUAC_BASE_DOUBLE RETURN_IMUL_PITCH;
-        AUAC_BASE_DOUBLE RETURN_IMU_YAW;
+#include<stdint.h>
+#include<stddef.h>
+#include"../Driver/PropThrustControl.h"
+//#include"../../../utility/definitions.h"
 
-    public:
-        //Constructor
-        GNCClientPortal();
+//Class for motor mixing algorithm
 
-        //Data Section
+class MOTOR_MIXING {
+    private:
+        AUAC_UBASE_8 THRUST_RANGE_FIX();
 
-
-
-        //Controls Section
+        AUAC_BASE_DOUBLE getCurrentThrustLevel(uint8_t MOTOR);
         
+    public:
+        AUAC_UBASE_8 MOTOR_MIX_ROLL(double roll);
+
+        AUAC_UBASE_8 MOTOR_MIX_YAW(double yaw);
+
+        AUAC_UBASE_8 MOTOR_MIX_PITCH(double pitch);
+
+        AUAC_UBASE_8 MOTOR_MIX_THRUST(double thrustLevel);
 
 };
 
-#endif // GNC_CLIENT_PORTAL_
+#endif
