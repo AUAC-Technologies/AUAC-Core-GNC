@@ -27,7 +27,7 @@ SOFTWARE.
 
 class GNCClientPortal {
     public:
-        //Data
+        //Data Section
         AUAC_BASE_DOUBLE RETURN_IMU_ROLL;
         AUAC_BASE_DOUBLE RETURN_IMUL_PITCH;
         AUAC_BASE_DOUBLE RETURN_IMU_YAW;
@@ -36,12 +36,8 @@ class GNCClientPortal {
         //Constructor
         GNCClientPortal();
 
-        //Data Section
-
-
-
         //Controls Section
-        
+
 
 };
 
